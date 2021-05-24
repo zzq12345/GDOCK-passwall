@@ -74,13 +74,12 @@ jobs:
           cd ..
           mkdir oscam
           cd oscam
-          git clone https://github.com/zzq12345/luci-app-oscam.git
-        
-        cd ..
-        cd package
-        git clone https://github.com/kob/OpenWrt-Packages-DVB.git
-        cd .. 
-        rm -rf ./feeds/packages/multimedia/tvheadend
+          git clone https://github.com/zzq12345/luci-app-oscam.git        
+          cd ..
+          cd package
+          git clone https://github.com/kob/OpenWrt-Packages-DVB.git
+          cd .. 
+          rm -rf ./feeds/packages/multimedia/tvheadend
     
         
     - name: Clone small code
