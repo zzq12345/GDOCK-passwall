@@ -76,7 +76,7 @@ jobs:
           git clone https://github.com/zzq12345/luci-app-oscam.git        
           echo "src-git OpenWrt-Packages-DVB https://github.com/kob/OpenWrt-Packages-DVB.git" >> ./feeds.conf.default 
           cd ..
-          cd package
+          mkdir OpenWrt-Packages-DVB
           git clone https://github.com/kob/OpenWrt-Packages-DVB.git
           rm -rf ./feeds/packages/multimedia/tvheadend
     
