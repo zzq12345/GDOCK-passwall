@@ -79,7 +79,6 @@ jobs:
           cd ..
           cd package
           git clone https://github.com/kob/OpenWrt-Packages-DVB.git
-          cd .. 
           rm -rf ./feeds/packages/multimedia/tvheadend
     
         
