@@ -102,7 +102,7 @@ jobs:
       run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
-        cp -f X64.config ./lede/.config
+        cp -f x64.config ./lede/.config
         chmod +x diy-newifi3.sh
         cd lede
         ../diy-newifi3.sh
