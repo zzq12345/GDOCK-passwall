@@ -75,7 +75,8 @@ jobs:
           mkdir oscam
           cd oscam
           git clone https://github.com/zzq12345/luci-app-oscam.git        
-          mkdir package
+          echo "src-git OpenWrt-Packages-DVB https://github.com/kob/OpenWrt-Packages-DVB.git" >> ./feeds.conf.default 
+          cd ..
           cd package
           git clone https://github.com/kob/OpenWrt-Packages-DVB.git
           cd .. 
