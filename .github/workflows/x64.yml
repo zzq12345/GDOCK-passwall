@@ -68,12 +68,7 @@ jobs:
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
           mkdir openwrt-packages
           cd openwrt-packages
-          git clone https://github.com/LemoFire/luci-app-aliddns.git
-          # echo "src-git oscam https://github.com/zzq12345/luci-app-oscam.git" >> ./feeds.conf.default 
-          # cd ..
-          # mkdir oscam
-          # cd oscam
-          # git clone https://github.com/zzq12345/luci-app-oscam.git        
+          git clone https://github.com/LemoFire/luci-app-aliddns.git             
           echo "src-git OpenWrt-Packages-DVB https://github.com/kob/OpenWrt-Packages-DVB.git" >> ./feeds.conf.default 
           cd ..
           mkdir OpenWrt-Packages-DVB
