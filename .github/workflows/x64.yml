@@ -69,9 +69,7 @@ jobs:
           cd lede
           git clone https://github.com/fw876/helloworld.git
           git clone https://github.com/LemoFire/luci-app-aliddns.git             
-          git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
-          cd OpenWrt-Packages-DVB
-          rm -rf ./feeds/packages/multimedia/tvheadend
+          
          
          
         
@@ -96,6 +94,9 @@ jobs:
       run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
+        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
+        cd OpenWrt-Packages-DVB
+        rm -rf ./feeds/packages/multimedia/tvheadend 
         cp -f x64.config ./lede/.config
         chmod +x diy-newifi3.sh
         cd lede
