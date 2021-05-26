@@ -70,9 +70,8 @@ jobs:
           cd openwrt-packages
           git clone https://github.com/LemoFire/luci-app-aliddns.git             
           echo "src-git OpenWrt-Packages-DVB https://github.com/kob/OpenWrt-Packages-DVB.git" >> ./feeds.conf.default 
-          cd ..
-          mkdir OpenWrt-Packages-DVB
           git clone https://github.com/kob/OpenWrt-Packages-DVB.git
+          cd OpenWrt-Packages-DVB
           rm -rf ./feeds/packages/multimedia/tvheadend
          
          
