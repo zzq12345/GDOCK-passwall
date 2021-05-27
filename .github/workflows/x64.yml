@@ -66,10 +66,10 @@ jobs:
       run: |
           #cd lede/package &&  git clone https://github.com/kenzok8/openwrt-packages.git
           #echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default              
-          cd lede
+          cd lede/package          
           git clone https://github.com/fw876/helloworld.git
           git clone https://github.com/LemoFire/luci-app-aliddns.git             
-          
+          git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
          
          
         
@@ -94,11 +94,12 @@ jobs:
       run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
-        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
-        rm -rf ./feeds/packages/multimedia/tvheadend 
+        
+        
         cp -f x64.config ./lede/.config
         chmod +x diy-newifi3.sh
         cd lede
+        rm -rf ./feeds/packages/multimedia/tvheadend 
         ../diy-newifi3.sh
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
