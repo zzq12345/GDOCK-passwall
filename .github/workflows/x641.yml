@@ -94,12 +94,13 @@ jobs:
         #+++++++++++++++++++++++++++++++++++++++++++++++++
         cd lede
         rm -f ./.config*
+        rm -rf ./feeds/packages/multimedia/tvheadend
         cd ..
         cp x641.config ./lede/.config
+        sed -i 's/^[ \t]*//g' ./.config
         chmod +x diy-newifi3.sh
-        cd lede
-        rm -rf ./feeds/packages/multimedia/tvheadend 
         ../diy-newifi3.sh
+        
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
         make defconfig
