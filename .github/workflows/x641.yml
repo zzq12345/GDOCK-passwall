@@ -85,7 +85,7 @@ jobs:
       run: cd lede && ./scripts/feeds install -a
     - name: dele tvh
       run: cd lede && rm -rf ./feeds/packages/multimedia/tvheadend
-      rm -rf ./Libaries/libgd
+      
 ##******************************************************
 
 
