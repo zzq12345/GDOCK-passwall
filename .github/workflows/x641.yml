@@ -98,7 +98,7 @@ jobs:
         
         cp x641.config ./lede/.config
         chmod +x diy-newifi3.sh
-        ./diy-newifi3.sh
+        ../diy-newifi3.sh
         
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
