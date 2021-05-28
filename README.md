@@ -1,3 +1,19 @@
+* check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so
+	But that file is already provided by package  * libgd
+ * check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so.3
+	But that file is already provided by package  * libgd
+ * check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so.3.0.8
+	But that file is already provided by package  * libgd
+ * opkg_install_cmd: Cannot install package libgd-full.
+ * check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so
+	But that file is already provided by package  * libgd
+ * check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so.3
+	But that file is already provided by package  * libgd
+ * check_data_file_clashes: Package libgd-full wants to install file /home/zzq/x64/lede/build_dir/target-x86_64_musl/root-x86/usr/lib/libgd.so.3.0.8
+	But that file is already provided by package  * libgd
+ * opkg_install_cmd: Cannot install package php7-mod-gd.
+
+
 # GDOCK
 自动从lean的lede源码clone并生成竞斗云、newifi3和x86-64位固件
 
