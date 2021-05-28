@@ -83,8 +83,9 @@ jobs:
 
     - name: Install feeds
       run: cd lede && ./scripts/feeds install -a
-
-
+    - name: dele tvh
+      run: cd lede && rm -rf ./feeds/packages/multimedia/tvheadend
+        
 ##******************************************************
 
 
@@ -92,10 +93,9 @@ jobs:
       run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
-        cd lede
-        rm -rf ./feeds/packages/multimedia/tvheadend
+        
         rm -f ./.config*
-        cd ..
+        
         cp x641.config ./lede/.config
         chmod +x diy-newifi3.sh
         ./diy-newifi3.sh
