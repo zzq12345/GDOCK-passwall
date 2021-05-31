@@ -84,7 +84,7 @@ jobs:
     - name: Install feeds
       run: cd lede && ./scripts/feeds install -a
     - name: dele tvh
-      run: cd lede && rm -rf ./feeds/packages/multimedia/tvheadend
+      run: cd lede && rm -r ./feeds/packages/multimedia/tvheadend
       
 ##******************************************************
 
