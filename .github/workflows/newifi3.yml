@@ -10,11 +10,11 @@ name: Build newifi3-20200530
 on: 
   release:
     types: [published]
-#  push:
-#    branches: 
-#      - master
-#  watch:
-#    types: [started]
+    push:
+     branches: 
+       - master
+    watch:
+     types: [started]
 
 jobs:
   build:
@@ -64,7 +64,9 @@ jobs:
         
     - name: Clone passwall code
       run: |
-        cd lede/package &&  git clone https://github.com/Lienol/openwrt-package.git
+        cd lede/package 
+        git clone https://github.com/Lienol/openwrt-package.git
+        git clone https://github.com/LemoFire/luci-app-aliddns.git
         
         
         
