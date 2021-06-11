@@ -93,12 +93,11 @@ jobs:
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
         cd lede
+        rm -rf ./feeds/packages/multimedia/tvheadend
         rm -f ./.config*
         cd ..
         cp x64.config ./lede/.config
         chmod +x diy-newifi3.sh
-        cd lede
-        rm -rf ./feeds/packages/multimedia/tvheadend 
         ../diy-newifi3.sh
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
