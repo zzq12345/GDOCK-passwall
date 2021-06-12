@@ -66,7 +66,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-
+        git clone https://github.com/zzq12345/luci-app-koolproxy.git
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
