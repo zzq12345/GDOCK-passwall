@@ -72,17 +72,15 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-    - name: Load custom configuration
+    - name: Configuration Customization - newifi-d2
+      env:
+        CONFIG_FILE: 'newifi-d2.config'
       run: |
-       #=================================================
-       #+++++++++++++++++++++++++++++++++++++++++++++++++
-        cp -f newifi-d2.config ./lede/.config
-        chmod +x diy-newifi3.sh
-        cd lede
-        ../diy-newifi3.sh
-        #++++++++++++++++++++++++++++++++++++++++++++++++
-        #=================================================
-        make defconfig
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x ./diy-newifi3.sh && ./diy-newifi3.sh
+        cd openwrt && make defconfig
+    
+ 
     - name: Download package
       run: |
         echo -e "$(nproc) thread build."
