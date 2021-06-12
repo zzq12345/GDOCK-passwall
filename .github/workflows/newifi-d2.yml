@@ -73,7 +73,7 @@ jobs:
         ./scripts/feeds install -a
         ./scripts/feeds install -a
     - name: Configuration Customization - newifi-d2
-      working-directory: ./openwrt
+      working-directory: 
       env:
         CONFIG_FILE: 'newifi-d2.config'
       run: |
