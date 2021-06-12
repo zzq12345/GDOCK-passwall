@@ -80,14 +80,13 @@ jobs:
         # chmod +x ./diy-newifi3.sh && ./diy-newifi3.sh
         cd openwrt && make defconfig
     
- 
     - name: Download package
       working-directory: ./openwrt
       run: |
-        echo -e "$(nproc) thread build."
-        cd lede && make download -j$(nproc)
+        make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
     - name: Build
       run: |
         cd lede
