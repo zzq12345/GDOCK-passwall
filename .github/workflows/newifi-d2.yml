@@ -70,7 +70,9 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a#- name: Import external feeds
+        ./scripts/feeds install -a
+
+    #- name: Import external feeds
     #  working-directory: ./openwrt
     #  run: |
     #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
