@@ -79,37 +79,37 @@ jobs:
     #  run: |
     #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
     #    git clone "your_github_link" package/"your_folder_name"      
-- name: Load custom configuration
-      run: |
+     - name: Load custom configuration
+       run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
-        cp -f newifi3.config ./lede/.config
-        chmod +x diy-newifi3.sh
-        cd lede
-        ../diy-newifi3.sh
-        #++++++++++++++++++++++++++++++++++++++++++++++++
-        #=================================================
-        make defconfig
-    - name: Download package
-      run: |
-        echo -e "$(nproc) thread build."
-        cd lede && make download -j$(nproc)
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-    - name: Build
-      run: |
-        cd lede
-        echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
- 
- ######把上面生成的.config文件拷贝到bin/targets/ramips/mt7621/my.config，从而在下载固件时，一起下载回来。
-     - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
+         cp -f newifi3.config ./lede/.config
+         chmod +x diy-newifi3.sh
+         cd lede
+         ../diy-newifi3.sh
+         #++++++++++++++++++++++++++++++++++++++++++++++++
+         #=================================================
+         make defconfig
+     - name: Download package
+       run: |
+         echo -e "$(nproc) thread build."
+         cd lede && make download -j$(nproc)
+         find dl -size -1024c -exec ls -l {} \;
+         find dl -size -1024c -exec rm -f {} \;
+     - name: Build
        run: |
          cd lede
-         cp  .config   ./bin/targets/ramips/mt7621/my.config  
-     - name : Upload artifact
-       uses: actions/upload-artifact@master
-       with:
+         echo -e "$(nproc) thread build."
+         make -j$(nproc) V=s
+ 
+ ######把上面生成的.config文件拷贝到bin/targets/ramips/mt7621/my.config，从而在下载固件时，一起下载回来。
+      - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
+        run: |
+          cd lede
+          cp  .config   ./bin/targets/ramips/mt7621/my.config  
+      - name : Upload artifact
+        uses: actions/upload-artifact@master
+        with:
         #=================================================
         name: newifi3d2-20200710
         path: ./lede/bin
