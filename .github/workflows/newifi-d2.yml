@@ -72,7 +72,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         ./scripts/feeds install -a
-     - name: Load custom configuration
+    - name: Load custom configuration
        run: |
         #=================================================
         #+++++++++++++++++++++++++++++++++++++++++++++++++
@@ -83,24 +83,24 @@ jobs:
          #++++++++++++++++++++++++++++++++++++++++++++++++
          #=================================================
          make defconfig
-     - name: Download package
+    - name: Download package
        run: |
          echo -e "$(nproc) thread build."
          cd lede && make download -j$(nproc)
          find dl -size -1024c -exec ls -l {} \;
          find dl -size -1024c -exec rm -f {} \;
-     - name: Build
+    - name: Build
        run: |
          cd lede
          echo -e "$(nproc) thread build."
          make -j$(nproc) V=s
  
  ######把上面生成的.config文件拷贝到bin/targets/ramips/mt7621/my.config，从而在下载固件时，一起下载回来。
-      - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
+     - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
         run: |
           cd lede
           cp  .config   ./bin/targets/ramips/mt7621/my.config  
-      - name : Upload artifact
+     - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
         #=================================================
