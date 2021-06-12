@@ -103,7 +103,7 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-      #=================================================
-      name: newifi3d2-20200710
-      path: ./lede/bin
+        name: newifi3d2-20200710
+        path: ./lede/bin
     
+  
