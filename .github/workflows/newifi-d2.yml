@@ -73,6 +73,7 @@ jobs:
         ./scripts/feeds install -a
         ./scripts/feeds install -a
     - name: Configuration Customization - newifi-d2
+      working-directory: ./openwrt
       env:
         CONFIG_FILE: 'newifi-d2.config'
       run: |
@@ -88,6 +89,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Build
+      working-directory: ./openwrt
       run: |
         cd lede
         echo -e "$(nproc) thread build."
@@ -95,6 +97,7 @@ jobs:
  
  ######把上面生成的.config文件拷贝到bin/targets/ramips/mt7621/my.config，从而在下载固件时，一起下载回来。
     - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
+      working-directory: ./openwrt
       run: |
         cd lede
         cp  .config   ./bin/targets/ramips/mt7621/my.config  
