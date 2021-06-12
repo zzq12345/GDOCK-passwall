@@ -82,6 +82,7 @@ jobs:
     
  
     - name: Download package
+      working-directory: ./openwrt
       run: |
         echo -e "$(nproc) thread build."
         cd lede && make download -j$(nproc)
