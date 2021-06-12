@@ -73,7 +73,7 @@ jobs:
         
     - name: Clone small code
       run: |
-      #cd lede/package &&  git clone https://github.com/kenzok8/small.git
+      # cd lede/package &&  git clone https://github.com/kenzok8/small.git
         
 ##****************************************************************************     
       
