@@ -65,9 +65,11 @@ jobs:
         cd openwrt
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
         git clone https://github.com/zzq12345/luci-app-koolproxy.git
+        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
+        rm -r ./feeds/packages/multimedia/tvheadend
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
