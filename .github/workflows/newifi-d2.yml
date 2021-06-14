@@ -71,7 +71,7 @@ jobs:
         
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/multimedia/tvheadend
+        
      - name: Import external feeds
        working-directory: ./openwrt
        run: |
@@ -79,7 +79,7 @@ jobs:
     #    git clone "your_github_link" package/"your_folder_name"
          git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy.git
          git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
-
+         rm -r ./feeds/packages/multimedia/tvheadend
     - name: Configuration Customization - newifi-d2
       working-directory: 
       env:
