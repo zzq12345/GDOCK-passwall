@@ -79,6 +79,11 @@ jobs:
         git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy.git
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
         rm -r ./feeds/packages/multimedia/tvheadend
+        git clone https://github.com/zzq12345/carddriver.git package/carddriver
+        cd carddrive 
+        mv dvb.mk package/kernel/liunx/modules/
+        mkdir dvb-firmware
+        mv dvb-firmware package/dvb-firmware
     - name: Configuration Customization - newifi-d2
       working-directory: 
       env:
