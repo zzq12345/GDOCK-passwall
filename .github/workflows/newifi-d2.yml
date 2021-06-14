@@ -80,7 +80,7 @@ jobs:
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
         rm -r ./feeds/packages/multimedia/tvheadend
         git clone https://github.com/zzq12345/carddriver.git package/carddriver
-        cd package/carddrive 
+        cd package/carddriver
         mv dvb.mk package/kernel/liunx/modules/
         cd ..
         mkdir dvb-firmware
