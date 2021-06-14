@@ -75,8 +75,8 @@ jobs:
      - name: Import external feeds
        working-directory: ./openwrt
        run: |
-    #    git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-    #    git clone "your_github_link" package/"your_folder_name"
+         # git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
+         # git clone "your_github_link" package/"your_folder_name"
          git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy.git
          git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
          rm -r ./feeds/packages/multimedia/tvheadend
