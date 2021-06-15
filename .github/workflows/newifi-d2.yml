@@ -79,7 +79,6 @@ jobs:
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
         rm -r ./feeds/packages/multimedia/tvheadend
     - name: Configuration Customization - Build_x86
-        # working-directory: ./openwrt
         env:
         CONFIG_FILE: 'newifi-d2.config'
       run: |
