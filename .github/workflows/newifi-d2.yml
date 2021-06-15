@@ -118,5 +118,3 @@ jobs:
       with:
         name: newifi3d2-20200710
         path: ./openwrt/bin
-    
-  
