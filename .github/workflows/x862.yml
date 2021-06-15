@@ -87,7 +87,7 @@ jobs:
         CONFIG_FILE: 'x861.config'
       run: |
         chmod +x diy-newifi3.sh
-        cd lede
+        cd openwrt
         ../diy-newifi3.sh
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
