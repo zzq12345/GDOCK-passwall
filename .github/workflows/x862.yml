@@ -66,7 +66,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-        git clone https://github.com/zzq12345/luci-app-koolproxy.git
+        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/koolproxy
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
@@ -79,8 +79,8 @@ jobs:
       run: |
         # git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
         # git clone "your_github_link" package/"your_folder_name"      
-        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy.git
-        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
+        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy
+        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
         rm -r ./feeds/packages/multimedia/tvheadend
     - name: Configuration Customization - Build_x86
       env:
