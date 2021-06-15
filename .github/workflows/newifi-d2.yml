@@ -64,12 +64,14 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-        
+        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/koolproxy
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        ./scripts/feeds install -a
+
     - name: Import external feeds
       working-directory: ./openwrt
       run: |
@@ -78,18 +80,17 @@ jobs:
         git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
         rm -r ./feeds/packages/multimedia/tvheadend
-    - name: Configuration Customization - Build_newifi-d2
-        env:
+    - name: Configuration Customization - Build_x86
+      env:
         CONFIG_FILE: 'newifi-d2.config'
       run: |
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x diy-newifi3.sh
         cd openwrt
         ../diy-newifi3.sh
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
         make defconfig
-       
+        
     - name: Download package
       working-directory: ./openwrt
       run: |
@@ -97,10 +98,9 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Build
+    - name: Build firmware
       working-directory: ./openwrt
       run: |
-        
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
  
