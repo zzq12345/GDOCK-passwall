@@ -104,5 +104,5 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: jcg-q20-20200710
+        name: jcg_q20-20200710
         path: ./openwrt/bin
