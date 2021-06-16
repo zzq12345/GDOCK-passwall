@@ -5,7 +5,7 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: Build_newifi-d2-lede
+name: Build_jcg-q20-lede
 
 on: 
   release:
