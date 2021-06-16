@@ -64,43 +64,46 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
-        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/koolproxy
+        
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        ./scripts/feeds install -a
-
+        
     - name: Import external feeds
       working-directory: ./openwrt
       run: |
         # git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-        # git clone "your_github_link" package/"your_folder_name"      
-        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy
-        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
+        # git clone "your_github_link" package/"your_folder_name"
+        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy.git
+        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB.git
         rm -r ./feeds/packages/multimedia/tvheadend
-    - name: Configuration Customization - Build_newifi-d2
+        # git clone https://github.com/zzq12345/carddriver.git package/carddriver
+        # cd ./package/carddriver
+        # mv dvb.mk ./package/kernel/liunx/modules/
+        # cd ..
+        # mkdir dvb-firmware
+        # mv dvb-firmware package/dvb-firmware
+    - name: Configuration Customization - newifi-d2
+      working-directory: 
       env:
         CONFIG_FILE: 'newifi-d2.config'
       run: |
-        chmod +x diy-newifi3.sh
-        cd openwrt
-        ../diy-newifi3.sh
-        #++++++++++++++++++++++++++++++++++++++++++++++++
-        #=================================================
-        make defconfig
-        
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        # chmod +x ./diy-newifi3.sh && ./diy-newifi3.sh
+        cd openwrt && make defconfig
+    
     - name: Download package
       working-directory: ./openwrt
       run: |
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Build firmware
+    - name: Build
       working-directory: ./openwrt
       run: |
+        
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
  
@@ -114,3 +117,4 @@ jobs:
       with:
         name: newifi3d2-20200710
         path: ./openwrt/bin
+    
