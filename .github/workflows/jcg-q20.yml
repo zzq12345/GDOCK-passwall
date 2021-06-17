@@ -1,33 +1,33 @@
 #=================================================
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: eSirPlayground
-# Youtube Channel: https://goo.gl/fvkdwm 
+#   Description: Buildnewifi3固件 FROM LEAN'S LEDE
+#   Author: JK
 #=================================================
 
-name: Build_jcg-q20-lede
+#=================================================
+name: Build jcg-q20-lede-20200710
+#=================================================
+
 on: 
   release:
     types: [published]
-  push:
-    branches: 
-      - master
-  schedule:
-    - cron: 0 8 * * 5
-  watch:
-    types: [started]
+#  push:
+#    branches: 
+#      - master
+#  watch:
+#    types: [started]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+
     steps:
     - name: Checkout
       uses: actions/checkout@master
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo -E apt-get clean
         docker rmi `docker images -q`
         echo "Deleting files, please wait ..."
         sudo rm -rf \
@@ -48,49 +48,75 @@ jobs:
           mysql* \
           php*
         sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex node-uglify git gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx-ucl libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev patch unzip lib32gcc1 libc6-dev-i386 subversion flex node-uglify gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils  libelf-dev autoconf automake libtool autopoint device-tree-compiler libuv-dev python3.6 zlib1g-dev upx-ucl node-uglify antlr3 gperf
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
+        
+        
     - name: Clone source code
-      env: 
-        REPO_URL: https://github.com/coolsnowwolf/lede
-        REPO_BRANCH: master
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        cd openwrt
-        sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default 
-    - name: Update & Install feeds
-      working-directory: ./openwrt
+        git clone https://github.com/coolsnowwolf/lede lede
+        
+        ##修改lede目录中的feeds.conf.default文件，把第5行的 # 去掉。
+       # cd lede
+       # sed -i '5s/#//' feeds.conf.default
+        
+   
+    - name: Clone SSR plus code
       run: |
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
-    - name: Import external feeds
-      working-directory: ./openwrt
+        cd lede/package &&  git clone https://github.com/fw876/helloworld.git
+    
+   
+   
+    - name: Clone passwall code
       run: |
-        # git clone https://github.com/xiaorouji/openwrt-passwall.git package/lienol
-        # git clone "your_github_link" package/"your_folder_name"      
-        git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy
-        git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
-        rm -rf /feeds/packages/multimedia/tvheadend
-    - name: Configuration Customization - jcg-q20 
-      env:
-        CONFIG_FILE: 'jcg-q20.config'
-      working-directory: ./
+        cd lede/package &&  git clone https://github.com/chengood5000/passwall652.git
+         ##下载别人备份的passwall源代码。
+        
+        
+    - name: Update feeds
+      run: cd lede && ./scripts/feeds update -a
+
+    - name: Install feeds
+      run: cd lede && ./scripts/feeds install -a
+
+
+
+
+
+
+
+    - name: Load custom configuration
       run: |
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x ./diy-newifi3.sh && ./diy-newifi3.sh
-        cd openwrt && make defconfig    
+        #=================================================
+        #+++++++++++++++++++++++++++++++++++++++++++++++++
+        cp -f jcg-q20.config ./lede/.config
+        chmod +x diy-newifi3.sh
+        cd lede
+        ../diy-newifi3.sh
+        #++++++++++++++++++++++++++++++++++++++++++++++++
+        #=================================================
+        make defconfig
     - name: Download package
-      working-directory: ./openwrt
       run: |
-        make download -j$(nproc)
+        echo -e "$(nproc) thread build."
+        cd lede && make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
     - name: Build
-      working-directory: ./openwrt
-      run: |        
+      run: |
+        cd lede
         echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s 
+        make -j$(nproc) V=s
+ 
  ######把上面生成的.config文件拷贝到bin/targets/ramips/mt7621/my.config，从而在下载固件时，一起下载回来。
     - name: Copy .config  to  ./bin/targets/ramips/mt7621/my.config
-      working-directory: ./openwrt
+      run: |
+        cd lede
+        cp  .config   ./bin/targets/ramips/mt7621/my.config  
+    - name : Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        #=================================================
+        name: jcg-q20-20210617
+        path: ./lede/bin
