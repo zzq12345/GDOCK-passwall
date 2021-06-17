@@ -10,11 +10,11 @@ name: Build jcg-q20-lede-20200710
 on: 
   release:
     types: [published]
-#  push:
-#    branches: 
-#      - master
-#  watch:
-#    types: [started]
+    push:
+    branches: 
+      - master
+  watch:
+    types: [started]
 
 jobs:
   build:
