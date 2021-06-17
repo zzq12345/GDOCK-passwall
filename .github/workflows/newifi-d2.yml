@@ -80,7 +80,7 @@ jobs:
         ../diy-newifi3.sh
         #++++++++++++++++++++++++++++++++++++++++++++++++
         #=================================================
-        make defconfig
+        # make defconfig
     - name: Download package
       working-directory: ./openwrt
       run: |
