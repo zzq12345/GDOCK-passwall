@@ -6,25 +6,20 @@
 #=================================================
 
 name: Build_jcg-q20-lede
-
 on: 
   release:
     types: [published]
-
   push:
     branches: 
       - master
-
   schedule:
     - cron: 0 8 * * 5
-
   watch:
     types: [started]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -77,8 +72,7 @@ jobs:
         git clone https://github.com/zzq12345/luci-app-koolproxy.git package/luci-app-koolproxy
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
         rm -rf ./feeds/packages/multimedia/tvheadend
-    - name: Configuration Customization - jcg-q20
-      working-directory:
+    - name: Configuration Customization - jcg-q20 
       env:
         CONFIG_FILE: 'jcg-q20.config'
       run: |
