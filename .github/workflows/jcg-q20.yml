@@ -78,7 +78,7 @@ jobs:
         git clone https://github.com/zzq12345/OpenWrt-Packages-DVB.git package/OpenWrt-Packages-DVB
         rm -rf ./feeds/packages/multimedia/tvheadend
     - name: Configuration Customization - jcg-q20
-       working-directory:
+      working-directory:
       env:
         CONFIG_FILE: 'jcg-q20.config'
       run: |
